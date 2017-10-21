@@ -21,9 +21,9 @@ public class Servidor {
             registry.bind("ServicoAgenda", comp);
             
             comp.Adicionar(new Compromisso(0, "21/10/2017", "10:00", "TEste1", "Teste1", true));
-            comp.Adicionar(new Compromisso(0, "22/10/2017", "11:00", "TEste2", "Teste2", true));
-            comp.Adicionar(new Compromisso(0, "23/10/2017", "12:00", "TEste3", "Teste3", false));
-            comp.Adicionar(new Compromisso(0, "24/10/2017", "01:00", "TEste4", "Teste4", true));
+            comp.Adicionar(new Compromisso(0, "21/10/2017", "11:00", "TEste2", "Teste2", true));
+            comp.Adicionar(new Compromisso(0, "21/10/2017", "12:00", "TEste3", "Teste3", false));
+            comp.Adicionar(new Compromisso(0, "21/10/2017", "01:00", "TEste4", "Teste4", true));
             comp.Adicionar(new Compromisso(0, "25/10/2017", "02:00", "TEste5", "Teste5", true));
             comp.Adicionar(new Compromisso(0, "26/10/2017", "03:00", "TEste6", "Teste6", true));
             comp.Adicionar(new Compromisso(0, "27/10/2017", "04:00", "TEste7", "Teste7", false));

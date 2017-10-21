@@ -59,6 +59,7 @@ public class CompromissoGUI extends javax.swing.JDialog {
         jLabel5.setText("Notificação:");
 
         buttonAdicionar.setText("Adicionar");
+        buttonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAdicionarActionPerformed(evt);
@@ -66,6 +67,7 @@ public class CompromissoGUI extends javax.swing.JDialog {
         });
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCancelarActionPerformed(evt);

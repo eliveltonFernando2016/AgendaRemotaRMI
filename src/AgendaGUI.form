@@ -106,6 +106,9 @@
         <Component class="javax.swing.JButton" name="buttonAdicionar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonAdicionar" noResource="true"/>
           </Properties>
           <Events>
@@ -115,6 +118,9 @@
         <Component class="javax.swing.JButton" name="buttonAlterar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alterar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonAlterar" noResource="true"/>
           </Properties>
           <Events>
@@ -124,6 +130,9 @@
         <Component class="javax.swing.JButton" name="buttonListar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Listar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonListar" noResource="true"/>
           </Properties>
           <Events>
@@ -133,6 +142,9 @@
         <Component class="javax.swing.JButton" name="buttonRemover">
           <Properties>
             <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonRemover" noResource="true"/>
           </Properties>
           <Events>
@@ -180,6 +192,9 @@
         <Component class="javax.swing.JButton" name="buttonLogin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Login"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonLogin" noResource="true"/>
           </Properties>
           <Events>
@@ -189,6 +204,9 @@
         <Component class="javax.swing.JButton" name="buttonLogout">
           <Properties>
             <Property name="text" type="java.lang.String" value="Logout"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
             <Property name="name" type="java.lang.String" value="buttonLogout" noResource="true"/>
           </Properties>
           <Events>

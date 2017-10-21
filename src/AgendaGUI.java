@@ -63,6 +63,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         panelCompromissos.setName("panelCompromissos"); // NOI18N
 
         buttonAdicionar.setText("Adicionar");
+        buttonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAdicionar.setName("buttonAdicionar"); // NOI18N
         buttonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +72,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         });
 
         buttonAlterar.setText("Alterar");
+        buttonAlterar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonAlterar.setName("buttonAlterar"); // NOI18N
         buttonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +81,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         });
 
         buttonListar.setText("Listar");
+        buttonListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonListar.setName("buttonListar"); // NOI18N
         buttonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +90,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         });
 
         buttonRemover.setText("Remover");
+        buttonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonRemover.setName("buttonRemover"); // NOI18N
         buttonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +132,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         panelSistema.setName("panelSistema"); // NOI18N
 
         buttonLogin.setText("Login");
+        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonLogin.setName("buttonLogin"); // NOI18N
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +141,7 @@ public class AgendaGUI extends javax.swing.JFrame {
         });
 
         buttonLogout.setText("Logout");
+        buttonLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonLogout.setName("buttonLogout"); // NOI18N
         buttonLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,6 +281,15 @@ public class AgendaGUI extends javax.swing.JFrame {
         return dados;
     }
     
+    private void AlteraValoresTabela(String[] dados, int linha){
+        modelAgenda.setValueAt(dados[0], linha, 0);
+        modelAgenda.setValueAt(dados[1], linha, 1);
+        modelAgenda.setValueAt(dados[2], linha, 2);
+        modelAgenda.setValueAt(dados[3], linha, 3);
+        modelAgenda.setValueAt(dados[4], linha, 4);
+        modelAgenda.setValueAt(dados[5], linha, 5);
+    }
+    
     private void buttonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarActionPerformed
         if(logou){
             dialogCompromisso.setVisible(true);
@@ -320,13 +335,18 @@ public class AgendaGUI extends javax.swing.JFrame {
 
             if (dialogCompromisso.getActionExecuted() == CompromissoGUI.ActionType.ADD) {
                 try {
+                    compromissoAdicionado = dialogCompromisso.obtemDados();
+                    compromissoAdicionado.setId(Integer.parseInt(id));
                     c.Alterar(compromissoAdicionado);
                     modelAgenda.fireTableDataChanged();
                 } catch (RemoteException ex) {
                     Logger.getLogger(AgendaGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
+            AlteraValoresTabela(TransformaDados(compromissoAdicionado, notificacao), linha);
         }
+        
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
@@ -352,6 +372,25 @@ public class AgendaGUI extends javax.swing.JFrame {
         String data = JOptionPane.showInputDialog("Listar compromissos em: ", "digite a data");
         
         // [TODO] Buscar os compromissos remotamente
+        try {
+            LinkedList<Compromisso> lista = c.Listar(data);
+            if(lista.size() > 0){
+                modelAgenda.setNumRows(0);
+                modelAgenda.fireTableDataChanged();
+                String notificacao;
+                for(int i=0; i < lista.size(); i++){
+                    if (lista.get(i).getNotificacao()) {
+                        notificacao = "SIM";
+                    } else{
+                        notificacao = "NÃO";
+                    }
+                    modelAgenda.addRow(TransformaDados(lista.get(i), notificacao));
+                }
+            }
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(AgendaGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonListarActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
@@ -366,7 +405,7 @@ public class AgendaGUI extends javax.swing.JFrame {
             Registry registry = LocateRegistry.getRegistry("localhost");
             c = (Acoes) registry.lookup("ServicoAgenda");
 
-            LinkedList<Compromisso> listaComp = c.Listar();
+            LinkedList<Compromisso> listaComp = c.Listar("0");
             if(listaComp.size() > 0){
                 String notificacao;
                 for(int i=0; i < listaComp.size(); i++){

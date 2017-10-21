@@ -1,4 +1,3 @@
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
@@ -17,6 +16,6 @@ public interface Acoes extends Remote{
     public Compromisso Adicionar(Compromisso newCompromisso) throws RemoteException;
     public void Alterar(Compromisso comp) throws RemoteException;
     public boolean Remover(Integer id) throws RemoteException;
-    public LinkedList<Compromisso> Listar() throws RemoteException;
+    public LinkedList<Compromisso> Listar(String data) throws RemoteException;
     public void Exibir(Compromisso comp) throws RemoteException;
 }

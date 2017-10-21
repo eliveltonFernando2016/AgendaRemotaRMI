@@ -32,37 +32,44 @@ public class Comp extends UnicastRemoteObject implements Acoes{
 
     @Override
     public void Alterar(Compromisso comp) throws RemoteException {
-        int j = 0;
         for(int i=0; i < listaCompromisso.size(); i++){
             if(listaCompromisso.get(i).getId().equals(comp.getId())){
-                j = i;
                 listaCompromisso.set(i, comp);
                 break;
             }
         }
-        
-        Exibir(listaCompromisso.get(j));
     }
 
     @Override
     public boolean Remover(Integer id) throws RemoteException{
         boolean ok = false;
-        System.out.println("quantidade antes: "+listaCompromisso.size());
         for(int i=0; i < listaCompromisso.size(); i++){
             if(listaCompromisso.get(i).getId().equals(id)){
                 listaCompromisso.remove(i);
                 ok = true;
             }
         }
-        
-        System.out.println("quantidade depois: "+listaCompromisso.size());
-
         return ok;
     }
     
     @Override
-    public LinkedList<Compromisso> Listar() throws RemoteException{
-        return listaCompromisso;
+    public LinkedList<Compromisso> Listar(String data) throws RemoteException{
+        if(data.equals("0")){
+            return listaCompromisso;
+        }
+        else{
+            LinkedList<Compromisso> lista = new LinkedList();
+            
+            for(int i=0; i < listaCompromisso.size(); i++){
+                if(listaCompromisso.get(i).getData().equals(data)){
+                    lista.add(listaCompromisso.get(i));
+                    
+                    Exibir(listaCompromisso.get(i));    
+                }
+            }
+            
+            return lista;
+        }
     }
     
     @Override
